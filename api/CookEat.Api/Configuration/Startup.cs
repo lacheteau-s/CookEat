@@ -7,6 +7,7 @@ namespace CookEat.Api.Configuration
         public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
         {
             // Add services to the container.
+            builder.Services.ConfigureCors();
 
             builder.Services.AddControllers(options =>
             {
@@ -29,6 +30,8 @@ namespace CookEat.Api.Configuration
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
