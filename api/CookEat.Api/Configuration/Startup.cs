@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CookEat.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 
 namespace CookEat.Api.Configuration
 {
@@ -6,6 +8,8 @@ namespace CookEat.Api.Configuration
     {
         public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
         {
+            builder.Services.AddSingleton<IDatabaseManager>((_) => CreateDatabaseManager(builder.Environment.ContentRootPath));
+
             // Add services to the container.
             builder.Services.ConfigureCors();
 
@@ -38,6 +42,14 @@ namespace CookEat.Api.Configuration
             app.MapControllers();
 
             return app;
+        }
+
+        private static IDatabaseManager CreateDatabaseManager(string rootPath)
+        {
+            var path = Path.Combine(rootPath, "SQL");
+            var fileProvider = new PhysicalFileProvider(path);
+
+            return new DatabaseManager(fileProvider);
         }
     }
 }
