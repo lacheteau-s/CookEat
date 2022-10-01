@@ -8,7 +8,7 @@ namespace CookEat.Api.Configuration
     {
         public static WebApplicationBuilder ConfigureServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddSingleton<IDatabaseManager>((_) => CreateDatabaseManager(builder.Environment.ContentRootPath));
+            builder.Services.AddSingleton((_) => CreateDatabaseManager(builder.Environment.ContentRootPath));
 
             // Add services to the container.
             builder.Services.ConfigureCors();

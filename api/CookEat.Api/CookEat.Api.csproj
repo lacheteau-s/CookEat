@@ -14,4 +14,8 @@
     <ProjectReference Include="..\CookEat.Data\CookEat.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SQL\" />
+  </ItemGroup>
+
 </Project>
