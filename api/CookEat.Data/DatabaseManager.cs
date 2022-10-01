@@ -14,6 +14,8 @@ namespace CookEat.Data
             _fileProvider = fileProvider ?? throw new ArgumentNullException(nameof(fileProvider));
         }
 
+        public int ExpectedSchemaVersion => GetScripts().Last().Version;
+
         private IEnumerable<(int Version, IFileInfo FileInfo)> GetScripts()
         {
             static int ParseVersion(string name) => int.Parse(name.Substring(0, name.IndexOf("_")));

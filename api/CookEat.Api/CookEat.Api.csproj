@@ -15,7 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SQL\" />
+    <None Remove="SQL\*.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="SQL\*.sql" />
   </ItemGroup>
 
 </Project>
